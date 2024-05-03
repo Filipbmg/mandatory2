@@ -57,6 +57,7 @@
             }
         }
         toggle();
+        sendWelcomeMail();
     }
 
     async function handleSignUpToast() {
@@ -72,6 +73,18 @@
             },
         );
     }
+
+    async function sendWelcomeMail() {
+        const response = await fetch("http://localhost:8080/signupMail", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, name }),
+        });
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result.message || "Failed to send welcome email");
+        }
+    } 
 </script>
 
 <Toaster/>

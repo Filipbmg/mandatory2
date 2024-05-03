@@ -1,7 +1,6 @@
 import db from './connection.js';
 
 const deleteMode = process.argv.includes('delete');
-console.log(process.argv);
 
 async function setupDatabase() {
     try {
@@ -17,10 +16,10 @@ async function setupDatabase() {
                 password VARCHAR(255) NOT NULL
             );
         `);
-
+        console.log("Database created")
         if (deleteMode) {
-            //passwords = 123
-            await db.run(`INSERT INTO users (name, email, password) VALUES ('John', 'john@dummy.dk', '$2a$12$eIxxyzAG76X21UfZpQtBR.EGPiu.dzczlHhOFNrEPNyTHeCoURVYO')`);
+            await db.run(`INSERT INTO users (name, email, password) VALUES ('John', 'john@dummy.dk', '$2b$12$6ooxdTggIhXYgl4/Jkq6D..OaS33wC55WNWwD6uSHul9aewCrRQnC')`);
+            console.log("Dummylogin: John@dummy.dk password: password123")
         }
     }
     catch (error) {
